@@ -248,14 +248,13 @@ function renderBudgetTable() {
     const variance = Number(item.finalCost || 0) - Number(item.targetBudget || 0);
 
     tr.innerHTML = `
-      <td><input type="text" value="${item.description}" data-budget="${index}" data-field="description" placeholder="Line item description" /></td>
-      <td><input type="number" min="0" step="0.01" value="${item.targetBudget}" data-budget="${index}" data-field="targetBudget" /></td>
+      <td>${item.description}</td>
+      <td class="money">${money(item.targetBudget)}</td>
       <td><input type="number" min="0" step="0.01" value="${item.actualToDate}" data-budget="${index}" data-field="actualToDate" /></td>
       <td><input type="number" min="0" step="0.01" value="${item.finalCost}" data-budget="${index}" data-field="finalCost" /></td>
       <td class="center"><input type="checkbox" data-budget="${index}" data-field="paidInFull" ${item.paidInFull ? "checked" : ""} /></td>
       <td><input type="text" value="${item.company}" data-budget="${index}" data-field="company" placeholder="Company name"/></td>
       <td class="money ${variance > 0 ? "variance-bad" : "variance-good"}">${money(variance)}</td>
-      <td><button class="delete-btn budget-remove-btn" type="button" data-remove-budget="${index}">Remove</button></td>
     `;
     tbody.appendChild(tr);
   });
@@ -358,20 +357,6 @@ function wireEvents() {
       return;
     }
 
-    if (target.id === "addBudgetLine") {
-      state.budget.push({
-        description: "",
-        targetBudget: 0,
-        actualToDate: 0,
-        finalCost: 0,
-        paidInFull: false,
-        company: ""
-      });
-      saveState();
-      renderBudgetTable();
-      return;
-    }
-
     if (target.id === "addDelivery") {
       state.deliveries.push({
         material: "",
@@ -387,21 +372,7 @@ function wireEvents() {
     }
 
     if (target.id === "resetBudget") {
-      state.budget = state.budget.map((item) => ({
-        ...item,
-        actualToDate: 0,
-        finalCost: 0,
-        paidInFull: false,
-        company: ""
-      }));
-      saveState();
-      renderBudgetTable();
-      return;
-    }
-
-    const removeBudget = target.dataset.removeBudget;
-    if (removeBudget !== undefined) {
-      state.budget.splice(Number(removeBudget), 1);
+      state.budget = structuredClone(initialState.budget);
       saveState();
       renderBudgetTable();
       return;

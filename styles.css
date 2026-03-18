@@ -48,11 +48,6 @@ h1 {
   margin-bottom: 12px;
 }
 
-.section-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
 
 .interest-entry-row {
   display: grid;
@@ -245,8 +240,4 @@ textarea {
   background: transparent;
   color: var(--bad);
   border: 1px solid var(--bad);
-}
-
-.budget-remove-btn {
-  min-width: 86px;
 }
