@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Build Budget & Deliveries</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Home Build Budget & Delivery Tracker</h1>
+        <p>
+          Track your <strong>TARGET BUDGET</strong>, actual/final spend, paid status,
+          vendors, and delivery timelines.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="budget-overview-heading">
+        <h2 id="budget-overview-heading">Budget Overview</h2>
+        <div class="top-financial-trackers">
+          <h3>Loan Interest Tracker (Monthly)</h3>
+          <div class="interest-entry-row">
+            <label>
+              Month
+              <input id="interestMonth" type="month" />
+            </label>
+            <label>
+              Interest Paid ($)
+              <input id="interestAmount" type="number" min="0" step="0.01" value="0" />
+            </label>
+            <button id="addInterestEntry" type="button">Add Month</button>
+          </div>
+          <p class="interest-total"><strong>Total Interest Paid:</strong> $<span id="interestPaidTotal">0.00</span></p>
+          <div class="table-wrap">
+            <table id="interestTable">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Interest Paid ($)</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="dual-chart-grid">
+          <article class="budget-chart-card" aria-labelledby="max-budget-chart-title">
+            <h3 id="max-budget-chart-title">Max Budget</h3>
+            <div class="chart-layout">
+              <canvas id="maxBudgetPieChart" width="220" height="220" aria-label="Cost to date vs max budget chart"></canvas>
+              <div class="chart-stats">
+                <p><strong>Budget:</strong> $<span id="maxChartBudget">0.00</span></p>
+                <p><strong>Cost to Date:</strong> $<span id="maxChartActualCost">0.00</span></p>
+                <p><strong>Remaining:</strong> $<span id="maxChartRemaining">0.00</span></p>
+                <p><strong>Over Budget:</strong> $<span id="maxChartOverBudget">0.00</span></p>
+                <p><strong>Spent %:</strong> <span id="maxChartPercent">0.0%</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="budget-chart-card" aria-labelledby="target-budget-chart-title">
+            <h3 id="target-budget-chart-title">Target Budget</h3>
+            <div class="chart-layout">
+              <canvas id="targetBudgetPieChart" width="220" height="220" aria-label="Cost to date vs target budget chart"></canvas>
+              <div class="chart-stats">
+                <p><strong>Budget:</strong> $<span id="targetChartBudget">0.00</span></p>
+                <p><strong>Cost to Date:</strong> $<span id="targetChartActualCost">0.00</span></p>
+                <p><strong>Remaining:</strong> $<span id="targetChartRemaining">0.00</span></p>
+                <p><strong>Over Budget:</strong> $<span id="targetChartOverBudget">0.00</span></p>
+                <p><strong>Spent %:</strong> <span id="targetChartPercent">0.0%</span></p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="legend">
+          <span><i class="legend-dot spent"></i>Spent</span>
+          <span><i class="legend-dot remaining"></i>Remaining</span>
+          <span><i class="legend-dot over"></i>Over Budget</span>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="project-details-heading">
+        <h2 id="project-details-heading">Project Details</h2>
+        <div class="project-grid">
+          <label>
+            Client Name
+            <input id="clientName" type="text" placeholder="e.g. Jacob Lamotte & Sara Dawaghreh" />
+          </label>
+          <label>
+            Project Date
+            <input id="projectDate" type="date" />
+          </label>
+          <label>
+            Living S.F.
+            <input id="livingSf" type="number" min="0" step="1" value="3341" />
+          </label>
+          <label>
+            Framing S.F.
+            <input id="framingSf" type="number" min="0" step="1" value="5775" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="budget-heading">
+        <div class="section-header">
+          <h2 id="budget-heading">Target Budget Tracker</h2>
+          <div class="section-actions">
+            <button id="addBudgetLine" type="button">Add Budget Line Item</button>
+            <button id="resetBudget" type="button">Reset Entered Values</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="budgetTable">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Target Budget ($)</th>
+                <th>Actual Cost To Date ($)</th>
+                <th>Final Cost ($)</th>
+                <th>Paid in Full</th>
+                <th>Company</th>
+                <th>Variance vs Target ($)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <th>Totals</th>
+                <th id="targetTotal"></th>
+                <th id="actualTotal"></th>
+                <th id="finalTotal"></th>
+                <th id="paidCount"></th>
+                <th></th>
+                <th id="varianceTotal"></th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="deliveries-heading">
+        <div class="section-header">
+          <h2 id="deliveries-heading">Material Delivery Tracker</h2>
+          <button id="addDelivery" type="button">Add Delivery Item</button>
+        </div>
+        <div class="table-wrap">
+          <table id="deliveryTable">
+            <thead>
+              <tr>
+                <th>Material / Item</th>
+                <th>Company / Supplier</th>
+                <th>Expected Date</th>
+                <th>Delivered Date</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

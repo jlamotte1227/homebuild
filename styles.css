@@ -1,0 +1,252 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --line: #d9e0ea;
+  --text: #1f2d3d;
+  --muted: #5d6a7a;
+  --accent: #2158c9;
+  --good: #1f8a4c;
+  --bad: #b53333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 24px auto;
+  padding: 0 16px 24px;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin-bottom: 8px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+
+.top-financial-trackers {
+  margin-bottom: 12px;
+}
+
+.section-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.interest-entry-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) minmax(180px, 240px) auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 8px;
+}
+
+.interest-total {
+  margin: 8px 0 4px;
+}
+
+#interestTable {
+  min-width: 450px;
+  margin-top: 6px;
+}
+
+#interestTable th,
+#interestTable td {
+  padding: 6px 8px;
+}
+
+.dual-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.budget-chart-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fbfdff;
+}
+
+.budget-chart-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.chart-layout {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#maxBudgetPieChart,
+#targetBudgetPieChart {
+  width: 220px;
+  height: 220px;
+  max-width: 100%;
+}
+
+.chart-stats p {
+  margin: 6px 0;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.legend-dot.spent {
+  background: #2158c9;
+}
+
+.legend-dot.remaining {
+  background: #90a4c4;
+}
+
+.legend-dot.over {
+  background: #b53333;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--muted);
+  display: grid;
+  gap: 6px;
+}
+
+input,
+select,
+button,
+textarea {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 8px;
+  width: 100%;
+}
+
+button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.96);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  min-width: 980px;
+}
+
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 8px;
+  vertical-align: middle;
+}
+
+th {
+  background: #f0f5ff;
+  text-align: left;
+}
+
+tfoot th,
+tfoot td {
+  font-weight: 700;
+  background: #fafcff;
+}
+
+.money {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.variance-good {
+  color: var(--good);
+}
+
+.variance-bad {
+  color: var(--bad);
+  background: #ffe3e3;
+  font-weight: 700;
+}
+
+.center {
+  text-align: center;
+}
+
+textarea {
+  min-height: 38px;
+}
+
+.delete-btn {
+  background: transparent;
+  color: var(--bad);
+  border: 1px solid var(--bad);
+}
+
+.budget-remove-btn {
+  min-width: 86px;
+}
